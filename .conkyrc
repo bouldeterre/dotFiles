@@ -1,0 +1,60 @@
+conky.config = {
+    color1 = '875A43',
+    alignment = 'top_left',
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+	  default_color = 'red',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'DejaVu Sans Mono:size=12',
+    gap_x = 5,
+    gap_y = 60,
+    minimum_height = 600,
+	  minimum_width = 500,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = true,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_transparent = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    stippled_borders = 0,
+    update_interval = 2,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false
+}
+
+conky.text = [[
+${color1}$nodename     				${alignr}$kernel
+$hr
+${color1}Uptime:${color} $uptime ${color1}    	${alignr}Load:${color} $loadavg
+${color grey}Frequency (in GHz):$color $freq_g
+${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+
+${color #88cc00}${cpugraph 70,240 07CC0D FF0000 -t}
+$hr
+${color grey}File systems:
+ / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+
+ ${color grey}eth0:
+ Up:$color ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
+ ${hr}
+ ${color grey}Wifi:
+ Up:$color ${upspeed en0} ${color grey} - Down:$color ${downspeed en0}
+
+ ${color1}WiFi Net Down:${color} ${downspeed en0}   				${goto 270}${color1}Net Up:${color} ${upspeed en0}
+ ${color1}${downspeedgraph en0 60,240 07CC0D FF0000 -t}${color1} 		${goto 270}${upspeedgraph en0 60,250 07CC0D FF0000 -t}
+
+]]
