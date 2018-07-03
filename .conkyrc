@@ -20,7 +20,7 @@ conky.config = {
     net_avg_samples = 2,
     no_buffers = true,
     out_to_console = true,
-    out_to_stderr = false,
+    out_to_stderr = true,
     extra_newline = false,
     own_window = true,
     own_window_transparent = true,
@@ -35,6 +35,10 @@ conky.config = {
 }
 
 conky.text = [[
+${color1}Top Processes:
+]]
+
+--[[
 ${color1}$nodename     				${alignr}$kernel
 $hr
 ${color1}Uptime:${color} $uptime ${color1}    	${alignr}Load:${color} $loadavg
@@ -55,6 +59,6 @@ ${color grey}File systems:
  Up:$color ${upspeed en0} ${color grey} - Down:$color ${downspeed en0}
 
  ${color1}WiFi Net Down:${color} ${downspeed en0}   				${goto 270}${color1}Net Up:${color} ${upspeed en0}
- ${color1}${downspeedgraph en0 60,240 07CC0D FF0000 -t}${color1} 		${goto 270}${upspeedgraph en0 60,250 07CC0D FF0000 -t}
+ ${color1}${downspeedgraph en0 60,240 07CC0D FF0000 -t}${color1} 		${goto 270}${upspeedgraph en0 60,250 07CC0D FF0000 -t} */
 
 ]]
