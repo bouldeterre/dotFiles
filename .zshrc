@@ -71,6 +71,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -94,6 +95,7 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias emacs="/usr/local/Cellar/emacs/26.1_1/Emacs.app/Contents/MacOS/Emacs -nw"
+alias ssh='TERM=xterm ssh'
 
 export NVM_DIR="$HOME/.nvm"
 export EDITOR=/usr/bin/emacs
@@ -103,3 +105,4 @@ export PATH=$PATH:$GOPATH/bin
 . "/usr/local/opt/nvm/nvm.sh"
 
 eval "$(pyenv init -)"
+eval "$(rbenv init -)"
