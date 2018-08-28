@@ -8,7 +8,7 @@
 (set-face-attribute 'show-paren-match nil :weight 'ultra-bold)
 
 (setq truncate-partial-width-windows nil)
-
+(setq cursor-type '(bar . 4))
 (require 'mouse)
 (xterm-mouse-mode t)
 (defun track-mouse (e)) 
@@ -32,6 +32,9 @@
 (global-set-key (kbd "<mouse-4>") 'scroll-down-10-lines) ;
 (global-set-key (kbd "<mouse-5>") 'scroll-up-10-lines) ;
 
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
 
@@ -46,7 +49,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (misterioso)))
- '(package-selected-packages (quote (elpy auto-complete go-mode))))
+ '(grep-find-ignored-directories
+   (quote
+    ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "venv" "ansible2.2" "")))
+ '(package-selected-packages
+   (quote
+    (yaml-mode company-terraform terraform-mode elpy auto-complete go-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
