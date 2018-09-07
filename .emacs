@@ -26,6 +26,17 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+
+
+;; ** Personal key **
+(global-set-key (kbd "<tab>") 'company-indent-or-complete-common)
+(global-set-key (kbd "TAB") 'company-indent-or-complete-common)
+
+
 ;; ** Helm config **
 (require 'helm-config)
 (helm-mode 1)
@@ -33,6 +44,7 @@
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
+
 
 ;; *** SCROLLING ***
 (defun scroll-up-10-lines ()
@@ -72,7 +84,7 @@
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "venv" "ansible2.2" "")))
  '(package-selected-packages
    (quote
-    (helm helm-ebdb markdown-mode flycheck dockerfile-mode yaml-mode company-terraform terraform-mode elpy auto-complete go-mode))))
+    (company-ansible company-jedi company-ebdb helm helm-ebdb markdown-mode flycheck dockerfile-mode yaml-mode company-terraform terraform-mode elpy auto-complete go-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
