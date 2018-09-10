@@ -11,6 +11,7 @@
 (set-face-foreground 'show-paren-match "#ffffff")
 (set-face-attribute 'show-paren-match nil :weight 'ultra-bold)
 
+
 (setq truncate-partial-width-windows nil)
 
 ;; *** Mouse Mode ***
@@ -79,6 +80,7 @@
  '(backup-directory-alist (quote (("*" . "~/EmacsBackups"))))
  '(cursor-type (quote (bar . 3)))
  '(custom-enabled-themes (quote (misterioso)))
+ '(global-auto-revert-mode t)
  '(grep-find-ignored-directories
    (quote
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "venv" "ansible2.2" "")))
@@ -91,5 +93,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "snow")))))
+
 
 ;;; .emacs ends here
