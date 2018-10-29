@@ -2,6 +2,16 @@
 ;;; Commentary:
 ;;; Emacs config
 ;;; Code:
+;; ** MELPA **
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives
+	       '("melpa" . "http://stable.melpa.org/packages/"))
+  )
+
 (package-initialize)
 
 (column-number-mode t)
@@ -63,15 +73,7 @@
 
 
 
-;; ** MELPA **
-(when (version<= "26.0.50" emacs-version )
-  (global-display-line-numbers-mode))
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list 'package-archives
-	       '("melpa" . "http://stable.melpa.org/packages/"))
-)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
