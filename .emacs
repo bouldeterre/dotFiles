@@ -8,11 +8,23 @@
 
 (when (>= emacs-major-version 24)
   (require 'package)
-  (add-to-list 'package-archives
-	       '("melpa" . "http://stable.melpa.org/packages/"))
+  (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                           ("melpa" . "https://melpa.org/packages/")))
+  (package-initialize)
+  ;; ** Helm config **
+  (require 'helm-config)
+  (helm-mode 1)
+
+  (global-set-key (kbd "M-x") #'helm-M-x)
+  (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+  (global-set-key (kbd "C-x C-f") #'helm-find-files)
+
+  (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+
   )
 
-(package-initialize)
+
 
 (column-number-mode t)
 (show-paren-mode 1)
@@ -34,8 +46,6 @@
 
 ;; ** Packages Init **
 
-(add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (defun my/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
@@ -47,14 +57,6 @@
 (global-set-key (kbd "<tab>") 'company-indent-or-complete-common)
 (global-set-key (kbd "TAB") 'company-indent-or-complete-common)
 
-
-;; ** Helm config **
-(require 'helm-config)
-(helm-mode 1)
-
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
 
 
 ;; *** SCROLLING ***
