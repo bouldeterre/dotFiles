@@ -1,0 +1,24 @@
+[user]
+	name = Emonides Pierre-Emmanuel
+	email = pierre-emmanuel.emonides@imc.com
+[core]
+	excludesfile = /Users/pemonid/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree 2.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+ s = status
+ # working with branches
+ b = branch
+ co = checkout
+ cb = checkout -b
+ # commit
+ c =  commit
+ cm = commit -m
+ # history
+ l = log --oneline --graph --color
+ lg = log --graph --date=relative --pretty=format:'%C(cyan)%h: %C(yellow) - %an - %Cgreen %C(cyan)%ar:%Creset%n%s%n'
+ ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

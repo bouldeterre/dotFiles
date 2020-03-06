@@ -1,0 +1,9 @@
+*~
+.DS_Store
+values_debug.yaml
+*.iml
+*.ipr
+*.iws
+*.DS_STORE
+*.sw[op]
+target/
