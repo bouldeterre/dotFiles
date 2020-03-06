@@ -1,8 +1,8 @@
 [user]
 	name = Emonides Pierre-Emmanuel
-	email = pierre-emmanuel.emonides@imc.com
+	email = pierreemmanuel.emonides@gmail.com
 [core]
-	excludesfile = /Users/pemonid/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
