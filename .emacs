@@ -74,6 +74,18 @@
 (global-set-key (kbd "<mouse-5>") 'scroll-up-10-lines) ;
 
 
+;; *** BACKUP DIRECTORY
+
+(let ((my-auto-save-dir (locate-user-emacs-file "~/EmacsSaves")))
+  (setq auto-save-file-name-transforms
+	`((".*" ,"~/EmacsSaves/" t)))
+  (unless (file-exists-p my-auto-save-dir)
+    (make-directory my-auto-save-dir)))
+
+(let ((my-backup-dir (locate-user-emacs-file "~/EmacsBackups")))
+  (setq backup-directory-alist '(("." . "~/EmacsBackups")))
+  (unless (file-exists-p my-backup-dir)
+    (make-directory my-backup-dir)))
 
 
 (custom-set-variables
@@ -81,7 +93,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(backup-directory-alist (quote (("*" . "~/EmacsBackups"))))
  '(cursor-type (quote (bar . 3)))
  '(custom-enabled-themes (quote (misterioso)))
  '(global-auto-revert-mode t)

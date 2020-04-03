@@ -16,3 +16,8 @@ Export package list:
 Install packages elsewhere:
 
 	$ apm install --packages-file atom-package-list.txt
+
+## Python global virtualenv ## 
+
+	$ make init
+	
