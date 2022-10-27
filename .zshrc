@@ -9,7 +9,7 @@ export ZSH="/Users/pemonid/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
-
+SPACESHIP_TIME_SHOW=true
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -71,21 +71,23 @@ ZSH_THEME="spaceship"
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.profile
 
 # User configuration
 
-export PATH="/Users/pemonid/Applications/apache-maven-3.6.3/bin:$PATH"
+export PATH="/Users/pemonid/Applications/apache-maven-3.6.3/bin:/Users/pemonid/.gem/ruby/2.6.0/bin:/Users/pemonid/.local/bin:$PATH"
+#export PATH="/usr/local/opt/inetutils/libexec/gnubin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='emacs'
+else
+    export EDITOR='emacs'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -105,14 +107,56 @@ alias clean="rm -v *~; rm -v \#*\#"
 
 alias svnl="svn log -l 15 | perl -l40pe 's/^-+/\n/'"
 alias svnll="svn log -l 30 | perl -l40pe 's/^-+/\n/'"
-
+alias play="osascript -e 'tell application \"Spotify\" to playpause'"
 alias pyenvl="pyenv virtualenvs"
+alias temperature="sudo powermetrics | grep 'CPU die temperature'"
+alias k="kubectl"
+
+function lookfor() {
+    echo "Looking for "$1
+    grep -r --exclude-dir={deployments,shared_config,input,ABN_Files,logs,.pytest_cache,tests,test,.git,node_modules} $1 *
+}
+
+
+alias lookfor='lookfor'
 
 # Generate J Aliases
-if [[ -f ~/generate_j_aliases.sh ]]; then
-    . ~/generate_j_aliases.sh
+#if [[ -f ~/generate_j_aliases.sh ]]; then
+#    . ~/generate_j_aliases.sh
+#fi
+
+# Lazy-load the generation of J Aliases to the first J call
+j() {
+  # Remove this function, subsequent calls will execute 'j' directly
+  unfunction "$0"
+
+  if [[ -f ~/generate_j_aliases.sh ]]; then
+    ~/generate_j_aliases.sh
+    export IS_J_ALIASES_GENERATED=True
+  fi
+  $0 $@
+}
+
+if which pyenv > /dev/null; then
+    eval "$(pyenv init --path)" # this only sets up the path stuff
+    eval "$(pyenv init -)"      # this makes pyenv work in the shell
+    alias pyenv='nocorrect pyenv'
+fi
+if which pyenv-virtualenv-init > /dev/null; then
+    eval "$(pyenv virtualenv-init - zsh)"
 fi
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+#export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
+export SENTRY_DISABLED=true
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/mc mc
+
+REQUESTS_CA_BUNDLE=/Users/pemonid/.config/cabundle.pem
