@@ -21,3 +21,9 @@ Install packages elsewhere:
 
 	$ make init
 	
+## Python pyenv
+	
+	$ brew install pyenv pyenv-virtualenv
+	$ pyenv 
+	$ pyenv virtualenv 3.10.7 dotfile-3.10.7
+	$ pyenv local dotfile-3.10.7
